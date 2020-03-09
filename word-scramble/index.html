@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Word Scramble</title>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    <script src="index.js" defer></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+        .correct {
+                background-color: green;
+            }
+
+        .wrong {
+            background-color: red;
+        }
+        .message {
+            padding: 8px;
+            margin: 10px 20px 0 0;
+            width: 350px;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <h1>
+        Word Scramble
+      </h1>
+      <div v-if="!gameOn">
+        <label>
+          Enter your player name:
+          <input type="text" v-model="playerName"/>
+        </label>
+        <button @click="playGame">Let's play!</button>
+      </div>
+      <div v-if="gameOn">
+        Game on, <b>{{playerName}}</b> ! Your mystery word is: <b>{{shuffledWord}}</b>
+        <p>
+            Hint: <i>{{hint}}</i> 
+        </p>
+       <label>
+        Your guess: <input type="text" v-model.trim="guessWord" />
+       </label>
+        <button @click="submitPlayerGuess">Submit guess</button>
+      </div>
+      <div v-if="guessSubmitted">
+        <div class="message" :class="{ correct : correctGuess, wrong : !correctGuess }">
+          <span>{{feedBackMessage}}</span>
+          <button v-if="correctGuess" @click="playGame">Play again</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
