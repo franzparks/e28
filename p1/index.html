@@ -9,42 +9,67 @@
         [v-cloak] {
             display: none;
         }
+        .app {
+          display: grid;
+          margin: 0 200px;
+        }
         .win {
-                background-color: green;
-            }
-
+            background-color: #4CAF50;
+        }
         .lose {
-            background-color: red;
+            background-color: #ff00009e;
         }
         .message {
             padding: 8px;
             margin: 10px 20px 0 0;
-            width: 350px;
+            width: 45%;
+        }
+        .choices {
+          border: 2px;
+          margin-bottom: 20px;
+        }
+        .button {
+          float: left;
+          border-radius: 20px;
+          text-align: center;
+          margin: 20px;
+          background-color: #4CAF50;
+          padding: 20px;
+        }
+        .game-control {
+          text-align: center;
+          background-color: cornflowerblue;
+          border-radius: 5px;
+          color: white;
+          padding: 10px;
+        }
+        .stats {
+          display: inline-grid;
+          margin-right: 100px;
         }
     </style>
   </head>
   <body>
       <script type="text/x-template" id="game-choices">
-        <div>
-            <button @click="$emit('player-choice', name)">{{name}}</button>
-        </div>
+        <button @click="$emit('player-choice', name)" class="button">{{name}}</button>
       </script>
 
-    <div id="app" v-cloak>
+    <div id="app" class="app" v-cloak>
       <h1>
         Rock Paper Scissors
       </h1>
       <div v-if="!gameOn">
         <label>
-          Enter your player name:
+          <h3>Enter your player name: 
           <input type="text" v-model="playerName"/>
+        </h3>
         </label>
-        <button @click="playGame">Let's play!</button>
+        <button @click="playGame" class="game-control">Let's play!</button>
       </div>
       <div v-if="gameOn">
-        <p>Game on, <b>{{playerName}}</b> !</p>
+        <p><h3>Game on, {{playerName}}!</h3></p>
         <h2>Choose "Rock", "Paper" Or "Scissors" !</h2>
-        <div v-if="!choiceSubmitted">
+        <div v-if="!choiceSubmitted" class="choices">
           <game-choices
             v-for="choice in choices"
             v-bind:key="choice.name"
@@ -53,29 +78,29 @@
         </div>
       </div>
       {{getResult}}
-      <div v-if="choiceSubmitted">
+      <div v-if="choiceSubmitted" class="results">
         <div class="message" :class="{ win : gameResult.result === 'win', lose : gameResult.result === 'lose' }">
           <span>{{gameResult.message}}</span>
-          <button @click="playGame">Play again</button>
+          <button @click="playGame" class="game-control">Play again</button>
         </div>
       </div>
       <div v-if="gameOn">
-        <div>
-          <div>
+          <div class="stats">
             <h3>Scores</h3>
             <ul>
               <li>Player: {{playerScore}}</li>
               <li>Computer: {{computerScore}}</li>
             </ul>
           </div>
-          <div>
+          <div class="stats">
             <h3>History</h3>
             <ul v-if="gameHistory.length > 0">
               <li v-for="history in gameHistory">{{history.stats}}</li>
             </ul>
           </div>
-        </div>
-        <button @click="resetScores">Reset</button>
+          <div>
+            <button @click="resetScores" class="game-control">Reset</button>
+          </div>
       </div>
     </div>
   </body>
