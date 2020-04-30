@@ -8,33 +8,30 @@
 </template>
      
 <script>
-const axios = require('axios');
-
+import * as app from '@/common/app.js';
 export default {
-    name: '',
     data: function() {
-        return {
-            products: []
-        };
+        return {};
     },
     computed: {
         categories: function() {
-            let categories = this.products.map(product => product.categories);
-            let mergedCategories = [].concat.apply([], categories);
+            let allCategories = [];
 
-            // Return unique, sorted categories
-            return [...new Set(mergedCategories)].sort();
-        }
-    },
-    mounted: function() {
-        // TODO: Pull product data from Firestore
-        axios
-            .get(
-                'https://my-json-server.typicode.com/susanBuck/e28-zipfoods-api/products'
-            )
-            .then(response => {
-                this.products = response.data;
+            // Iterate through all our products
+            Object.keys(this.products).map(key => {
+                // Build array of categories
+                allCategories.push(this.products[key].categories);
             });
+
+            // Merge together the array of categories
+            let mergedCategories = [].concat.apply([], allCategories);
+
+            // Get just the unique categories, sorted
+            return [...new Set(mergedCategories)].sort();
+        },
+        products: function() {
+            return this.$store.state.products;
+        }
     }
 };
 </script>

@@ -7,23 +7,32 @@
     </div>
 </template>
 <script>
-// TODO: Pull product data from Firestore
-import { products } from '@/seeds/products.js';
+import * as app from '@/common/app.js';
 
 export default {
-    name: '',
     props: ['category'],
     data: function() {
-        return {
-            products: products
-        };
+        return {};
     },
     computed: {
         featuredProducts: function() {
-            function isMatch(product) {
-                return product.categories.includes(this);
-            }
-            return this.products.filter(isMatch, this.category);
+            let featuredProducts = [];
+            // Iterate through all our products
+            Object.keys(this.products).map(key => {
+                // If this product includes the category we're filtering for...
+                if (
+                    this.products[key].categories &&
+                    this.products[key].categories.includes(this.category)
+                ) {
+                    // Add it to our featuredProducts array
+                    featuredProducts.push(this.products[key]);
+                }
+            });
+
+            return featuredProducts;
+        },
+        products: function() {
+            return this.$store.state.products;
         }
     }
 };

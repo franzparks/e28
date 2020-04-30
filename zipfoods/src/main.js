@@ -7,6 +7,9 @@ import CategoriesPage from '@/components/pages/CategoriesPage.vue';
 import HomePage from '@/components/pages/HomePage.vue';
 import ProductPage from '@/components/pages/ProductPage.vue';
 import ProductCreatePage from '@/components/pages/ProductCreatePage.vue';
+import CartPage from '@/components/pages/CartPage.vue';
+
+import store from '@/common/store';
 
 Vue.use(VueRouter);
 
@@ -19,6 +22,7 @@ const routes = [
   { path: '/product/:slug', component: ProductPage, name: 'product', props: true },
   { path: '/categories', component: CategoriesPage, name: 'categories' },
   { path: '/products/create', component: ProductCreatePage, name: 'add a product' },
+  { path: '/cart', component: CartPage, name: 'cart' },
 ];
 
 const router = new VueRouter({
@@ -27,6 +31,7 @@ const router = new VueRouter({
 })
 
 new Vue({
+  store: store,
   router: router,
   render: h => h(App),
 }).$mount('#app')

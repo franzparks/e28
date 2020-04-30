@@ -10,7 +10,6 @@
 import ShowFeatured from '@/components/ShowFeatured.vue';
 
 export default {
-    name: 'ShowHome',
     components: {
         'show-featured': ShowFeatured
     },

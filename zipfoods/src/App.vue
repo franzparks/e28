@@ -5,7 +5,10 @@
         <nav>
             <ul>
                 <li v-for='link in links' :key='link'>
-                    <router-link :to='{ name: link }' exact>{{ link }}</router-link>
+                    <router-link :to='{ name: link }' exact>
+                        {{ link }}
+                        <span v-if='link == "cart"'>({{ cartCount }})</span>
+                    </router-link>
                 </li>
             </ul>
         </nav>
@@ -15,15 +18,28 @@
 </template>
 
 <script>
+import * as app from '@/common/app.js';
+
 export default {
     name: 'App',
     components: {},
     data: function() {
         return {
-            links: ['home', 'products', 'categories', 'add a product']
+            links: ['home', 'products', 'categories', 'add a product', 'cart']
         };
     },
-    mounted: function() {}
+    mounted: function() {
+        let cart = new app.Cart();
+
+        this.$store.commit('setCartCount', cart.count());
+
+        this.$store.dispatch('setProducts');
+    },
+    computed: {
+        cartCount: function() {
+            return this.$store.state.cartCount;
+        }
+    }
 };
 </script>
 

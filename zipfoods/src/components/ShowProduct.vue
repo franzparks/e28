@@ -8,7 +8,6 @@
 
 <script>
 export default {
-    name: '',
     props: ['product'],
     data: function() {
         return {};

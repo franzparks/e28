@@ -35,7 +35,6 @@
 import * as app from '@/common/app.js';
 
 export default {
-    name: '',
     data: function() {
         return {
             added: false,
@@ -52,8 +51,7 @@ export default {
     },
     methods: {
         addProduct: function() {
-            app.api.add('products', this.product).then(id => {
-                console.log('Product was added with the id: ' + id);
+            app.api.add('products', this.product).then(() => {
                 this.added = true;
 
                 setTimeout(() => (this.added = false), 3000);

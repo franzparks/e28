@@ -7,23 +7,19 @@
 
 <script>
 import ShowProduct from '@/components/ShowProduct.vue';
-import * as app from '@/common/app.js';
+//import * as app from '@/common/app.js';
 
 export default {
-    name: '',
     components: {
         'show-product': ShowProduct
     },
-    props: [],
     data: function() {
-        return {
-            products: []
-        };
+        return {};
     },
-    mounted: function() {
-        app.api.all('products').then(response => {
-            this.products = response;
-        });
+    computed: {
+        products: function() {
+            return this.$store.state.products;
+        }
     }
 };
 </script>
