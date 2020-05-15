@@ -186,6 +186,38 @@ PAGE SPECIFIC
     }
 }
 
+form {
+    text-align: left;
+}
+input[type=text],
+input[type=password],
+input[type=email],
+textarea {
+    font-size: 1.6rem;
+    padding: 5px;
+    width: 100%;
+    border: 1px solid $silver;
+
+    &.form-input-error {
+        border: 1px solid $red;
+    }
+}
+.form-feedback {
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.form-feedback-error {
+    color: $red;
+    @extend .form-feedback;
+}
+
+.form-feedback-success {
+    color: $green;
+    @extend .form-feedback;
+}
+
 /*----------------------------------------------------
 MISC
 -----------------------------------------------------*/

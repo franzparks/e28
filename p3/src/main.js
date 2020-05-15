@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from '@/App.vue'
 import VueRouter from 'vue-router';
+import Vuelidate from 'vuelidate';
 import HomePage from '@/components/recipes/HomePage.vue';
 import RecipePage from '@/components/recipes/RecipePage.vue';
 import RecipeCreatePage from '@/components/recipes/RecipeCreatePage.vue';
@@ -10,6 +11,7 @@ import FavoritesListPage from '@/components/recipes/FavoritesListPage.vue';
 import store from '@/common/store';
 
 Vue.use(VueRouter);
+Vue.use(Vuelidate);
 
 const routes = [
   { path: '/', component: HomePage, name: 'home' },
