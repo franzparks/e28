@@ -9,6 +9,7 @@
                     <span>({{ item.quantity }}) x {{ item.name }}</span>
                     <span>
                         <button
+                            class='remove-frm-list-btn'
                             @click='removeFromShoppingList(item.name, item.quantity)'
                         >Remove</button>
                     </span>
@@ -26,6 +27,7 @@ export default {
         return {
             items: [],
             shoppingList: null
+            //TODO: update numbering of items: convert to whole numbers
         };
     },
     mounted() {

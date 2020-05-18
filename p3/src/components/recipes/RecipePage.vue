@@ -5,7 +5,7 @@
         <p class='description'>{{ recipe.summary }}</p>
         <show-ingredients :ingredients='recipe.ingredients'></show-ingredients>
 
-        <button @click='addToFavoritesList(slug)'>Add to favorites list</button>
+        <button class='add-to-favs-list' @click='addToFavoritesList(slug)'>Add recipe to favorites list</button>
 
         <transition name='fade'>
             <div class='alert' v-if='addAlert'>Your favorites list has been updated!</div>

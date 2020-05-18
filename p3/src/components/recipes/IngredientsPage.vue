@@ -10,7 +10,7 @@
                 <p>
                     <span>{{ ingredient }}</span>
                     <span>
-                        <button
+                        <button class='ingredient'
                             @click='addToShoppingList(ingredient)'
                         >Add to cart</button>
                     </span>

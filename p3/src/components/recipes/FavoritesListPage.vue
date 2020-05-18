@@ -7,6 +7,7 @@
             <li v-for='item in items' :key='item.slug'>
                 {{ getRecipeDetails(item.slug).name }}
                 <button
+                    class='remove-frm-list-btn'
                     @click='removeFromFavoritesList(item.slug)'
                 >Remove</button>
             </li>
