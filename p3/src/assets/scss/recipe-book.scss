@@ -255,10 +255,10 @@ MISC
     width: 250px;
     height: 50px;
     background-color: $blue;
-    @extend .ingredient
+    @extend .ingredient;
 }
 .remove-frm-list-btn {
     margin-left: 10px;
     width: 60px;
-    @extend .ingredient
+    @extend .ingredient;
 }
